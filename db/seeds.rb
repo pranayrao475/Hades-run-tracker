@@ -1,7 +1,76 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+puts "🌱 Creating Gods..."
+athena = God.create(name: "Athena", title: "Goddess of Wisdom", image: "https://static.wikia.nocookie.net/hades_gamepedia_en/images/6/68/Athena.png")
+zeus = God.create(name: "Zeus", title: "King of the Olympians", image: "https://static.wikia.nocookie.net/hades_gamepedia_en/images/3/3c/Zeus.png/revision/latest?cb=20200710034046")
+aphrodite = God.create(name: "Aphrodite", title: "Goddess of Love And Beauty", image: "https://static.wikia.nocookie.net/hades_gamepedia_en/images/c/c6/Aphrodite.png")
+ares = God.create(name: "Ares", title: "God of War", image: "https://static.wikia.nocookie.net/hades_gamepedia_en/images/0/05/Ares.png")
+artemis = God.create(name: "Artemis", title: "Goddess of the Hunt", image: "https://static.wikia.nocookie.net/hades_gamepedia_en/images/d/d2/Artemis.png/revision/latest/scale-to-width-down/1000?cb=20200710034407")
+
+
+# User.create(username: "UncleDadMom", password: "deeznuts")
+# User.create(username: "MoscowMullin", password: "copperjugz")
+
+puts "🌱 Seeding boons..."
+
+Boon.create(god_id: athena.id, boon_name: "Divine Strike", description: "Your Attack is stronger, and can Deflect.")
+Boon.create(god_id: athena.id, boon_name: "Divine Flourish", description: "Your Special is stronger, and can Deflect.")
+Boon.create(god_id: athena.id, boon_name: "Phalanx Shot", description: "Your Cast damages foes in a small area, and can Deflect")
+Boon.create(god_id: athena.id, boon_name: "Phalanx Flare", description: "Your Cast damages foes around you, and can Deflect.")
+Boon.create(god_id: athena.id, boon_name: "Divine Dash", description: "Your Dash deals damage and can Deflect.")
+Boon.create(god_id: athena.id, boon_name: "Athena's Aid", description: "Your Call briefly makes you Invulnerable and Deflect all attacks.")
+
+Boon.create(god_id: zeus.id, boon_name: "Thunder Flourish", description: "Your Special causes a lightning bolt to strike nearby foes.")
+Boon.create(god_id: zeus.id, boon_name: "Electric Shot", description: "Your Cast is a burst of chain-lightning that bounces between foes.")
+Boon.create(god_id: zeus.id, boon_name: "Thunder Flare", description: "Your Cast causes a lightning bolt to strike nearby foes.")
+Boon.create(god_id: zeus.id, boon_name: "Thunder Dash", description: "Your Dash causes a lightning bolt to strike nearby foes.")
+Boon.create(god_id: zeus.id, boon_name: "Zeus' Aid", description: "Your Call makes lightning strike nearby foes repeatedly for a few seconds.")
+Boon.create(god_id: zeus.id, boon_name: "Heaven's Vengeance", description: "After you take damage, your foe is struck by lightning.")
+Boon.create(god_id: zeus.id, boon_name: "Lightning Reflexes", description: "After you Dash just before getting hit, a bolt strikes a nearby foes.")
+Boon.create(god_id: zeus.id, boon_name: "Storm Lightning", description: "Your chain-lightning effects bounce more times before expiring.")
+Boon.create(god_id: zeus.id, boon_name: "High Voltage", description: "Your lightning bolt effects deal damage in a larger area.")
+Boon.create(god_id: zeus.id, boon_name: "Double Strike", description: "Your lightning bolt effects have a chance to strike twice.")
+Boon.create(god_id: zeus.id, boon_name: "Static Discharge", description: "Your lightning effects also make foes Jolted.")
+Boon.create(god_id: zeus.id, boon_name: "Clouded Judgement", description: "Your God Gauge charges faster when you deal or take damage.")
+Boon.create(god_id: zeus.id, boon_name: "Billowing Strength", description: "After using Call, you deal more damage for a short time.")
+Boon.create(god_id: zeus.id, boon_name: "Splitting Bolt", description: "All your lightning effects create an additional burst.")
+
+Boon.create(god_id: aphrodite.id, boon_name: "Heartbreak Strike", description: "Your Attack deals more damage and inflicts Weak.")
+Boon.create(god_id: aphrodite.id, boon_name: "Heartbreak Flourish", description: "Your Special deals more damage and inflicts Weak.")
+Boon.create(god_id: aphrodite.id, boon_name: "Crush Shot", description: "Your Cast is a wide, short-range blast that inflicts Weak.")
+Boon.create(god_id: aphrodite.id, boon_name: "Passion Flare", description: "Your Cast damages foes around you and inflicts Weak.")
+Boon.create(god_id: aphrodite.id, boon_name: "Passion Dash", description: "Your Dash inflicts damage where you end up, inflicting Weak.")
+Boon.create(god_id: aphrodite.id, boon_name: "Aphrodite's Aid", description: "Your Call fires a seeking projectile that inflicts Charm.")
+Boon.create(god_id: aphrodite.id, boon_name: "Dying Lament", description: "When foes are slain, they damage nearby foes and inflict Weak.")
+Boon.create(god_id: aphrodite.id, boon_name: "Wave of Despair", description: "After you take damage, damage nearby foes and inflict Weak.")
+Boon.create(god_id: aphrodite.id, boon_name: "Different League", description: "Resist some damage from nearby foes' attacks.")
+Boon.create(god_id: aphrodite.id, boon_name: "Life Affirmation", description: "Max life upgrade chamber rewards are worth more.")
+Boon.create(god_id: aphrodite.id, boon_name: "Empty Inside", description: "Your Weak effects have a longer duration.")
+Boon.create(god_id: aphrodite.id, boon_name: "Sweet Surrender", description: "Weak-afflicted foes are also more susceptible to damage.")
+Boon.create(god_id: aphrodite.id, boon_name: "Broken Resolve", description: "Your Weak effects are more potent.")
+Boon.create(god_id: aphrodite.id, boon_name: "Blown Kiss", description: "Your Cast shoots farther and is stronger against undamaged foes.")
+Boon.create(god_id: aphrodite.id, boon_name: "Unhealthy Fixation", description: "Your Weak effects also have a chance to Charm foes.")
+
+Boon.create(god_id: ares.id, boon_name: "Curse of Agony", description: "Your Attack inflicts Doom.")
+Boon.create(god_id: ares.id, boon_name: "Curse of Pain", description: "Your Special inflicts Doom.")
+Boon.create(god_id: ares.id, boon_name: "Slicing Shot", description: "Your Cast sends a Blade Rift hurling ahead.")
+Boon.create(god_id: ares.id, boon_name: "Slicing Flare", description: "Your Cast sends a large Blade Rift hurling ahead for a brief time.")
+Boon.create(god_id: ares.id, boon_name: "Blade Dash", description: "Your Dash creates a Blade Rift where you started.")
+Boon.create(god_id: ares.id, boon_name: "Ares' Aid", description: "Your Call turns you into an Impervious Blade Rift for a short time.")
+Boon.create(god_id: ares.id, boon_name: "Curse of Vengeance", description: "After you take damage, inflict Doom on surrounding foes.")
+Boon.create(god_id: ares.id, boon_name: "Urge to Kill", description: "Your Attack, Special, and Cast deal more damage.")
+Boon.create(god_id: ares.id, boon_name: "Urge to Kill", description: "Your Attack, Special, and Cast deal more damage.")
+Boon.create(god_id: ares.id, boon_name: "Battle Rage", description: "After slaying a foe, your next Attack or Special deals more damage.")
+Boon.create(god_id: ares.id, boon_name: "Blood Frenzy", description: "After using Death Defiance, deal more damage that encounter.")
+Boon.create(god_id: ares.id, boon_name: "Black Metal", description: "Your Blade Rift powers deal damage in a wider area.")
+Boon.create(god_id: ares.id, boon_name: "Engulfing Vortex", description: "Your Blade Rift effects last longer and pull foes in.")
+Boon.create(god_id: ares.id, boon_name: "Dire Misfortune", description: "Your Doom effects deal more damage when applied multiple times.")
+Boon.create(god_id: ares.id, boon_name: "Impending Doom", description: "Your Doom effects deal more damage, after a slightly longer time.")
+Boon.create(god_id: ares.id, boon_name: "Vicious Cycle", description: "Your Blade Rift effects deal more damage for each consecutive hit.")
+
+puts "🌱 Bosses..."
+Boss.create(boss_name: "Megaera", level: 1, image:"https://static.wikia.nocookie.net/hades_gamepedia_en/images/6/6b/Megaera_serious.png/revision/latest/scale-to-width-down/250?cb=20191204200325")
+Boss.create(boss_name: "Alecto", level: 1, image:"https://static.wikia.nocookie.net/hades_gamepedia_en/images/6/69/Alecto.png/revision/latest?cb=20190314180744")
+Boss.create(boss_name: "Tisiphone", level: 1,image:"https://static.wikia.nocookie.net/hades_gamepedia_en/images/b/b6/Tisiphone.png/revision/latest?cb=20190314173538")
+Boss.create(boss_name: "Bone Hydra", level: 2,image:"https://static.wikia.nocookie.net/hades_gamepedia_en/images/9/98/Bone_Hydra.png/revision/latest?cb=20210409142544")
+Boss.create(boss_name: "Theseus and Asterius", level: 3,image:"https://static0.gamerantimages.com/wordpress/wp-content/uploads/2020/10/hades-theseus-asterius-1.jpg")
+Boss.create(boss_name: "Hades", level: 4,image:"https://static0.srcdn.com/wordpress/wp-content/uploads/2020/09/Hades-Final-Boss-Hades.jpg")
+puts "✅ Done seeding!"
