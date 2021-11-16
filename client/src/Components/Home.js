@@ -11,10 +11,10 @@ function Home({ user, setUser}) {
       
     if (user) {
       return (
-          <div>
-      <h1>Welcome, {user.username}!</h1>
-      <button onClick={handleLogoutClick}>Logout</button>
-      </div>
+        <div>
+            <h1>Welcome, {user.username}!</h1>
+            <button onClick={handleLogoutClick}>Logout</button>
+        </div>
       )}
        else {
       return (

@@ -1,5 +1,5 @@
 class RunsController < ApplicationController
-
+    
     def create
         run = Run.create(run_params)
         render json: run, status: :created

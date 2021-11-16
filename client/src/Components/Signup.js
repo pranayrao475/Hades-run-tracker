@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 function Signup({setUser}){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
-  
+    let navigate = useNavigate();
+
     function handleSubmit(e) {
       e.preventDefault();
       fetch("/signup", {
@@ -20,6 +22,7 @@ function Signup({setUser}){
       }).then((r) => {
         if (r.ok) {
           r.json().then((user) => setUser(user));
+          navigate("/")
         }
       });
     }
