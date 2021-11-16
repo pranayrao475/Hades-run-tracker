@@ -1,14 +1,14 @@
-import { Link } from "react-router-dom";
+
 import {useState} from "react"
 
-function LandingPage({setUser}){
+function Login({setUser, user}){
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
         fetch("/login", {
-          method: "POST",
+          method: "POST", //creating session
           headers: {
             "Content-Type": "application/json",
           },
@@ -19,7 +19,10 @@ function LandingPage({setUser}){
           }
         });
       }
-    
+    if (user) {
+        return (
+            <h1>Welcome, {user.username}!</h1>
+    )}
       return (
         <div>
           <form onSubmit={handleSubmit}>
@@ -42,9 +45,8 @@ function LandingPage({setUser}){
             />
             <button type="submit">Login</button>
           </form>
-          <Link to="/signup">Signup</Link>
         </div>
       )
 }
 
-export default LandingPage;
+export default Login;

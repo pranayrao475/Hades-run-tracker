@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import LandingPage from "./LandingPage"
+import Home from "./Home"
+import Login from "./Login";
+
 import Signup from "./Signup"
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -17,8 +20,9 @@ function App() {
   return (
     <main>
     <Routes>
-        <Route index element={<LandingPage setUser={setUser}/>} />
+        <Route index element={<Home user={user} setUser={setUser}/>} />
         <Route path="/signup" element={<Signup setUser={setUser}/>}/>
+        <Route path="/login" element={<Login setUser={setUser}/>}/>
     </Routes>
     </main>
   );
