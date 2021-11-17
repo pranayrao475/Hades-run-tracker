@@ -2,7 +2,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components"
 import {Button} from "../styles"
 
+
 function Home({ user, setUser}) {
+    
     function handleLogoutClick() {
         fetch("/logout", { method: "DELETE" }).then((r) => {
           if (r.ok) {
@@ -13,10 +15,12 @@ function Home({ user, setUser}) {
       
     if (user) {
       return (
-          <div>
-      <h1>Welcome, {user.username}!</h1>
-      <button onClick={handleLogoutClick}>Logout</button>
-      </div>
+        <div>
+            <button onClick={handleLogoutClick}>Logout</button>
+            <h1>Welcome, {user.username}!</h1>
+            <Link to="/newrun">Log a run</Link>
+            <Link to="/runlog">My runs</Link>
+        </div>
       )}
        else {
       return (<>
