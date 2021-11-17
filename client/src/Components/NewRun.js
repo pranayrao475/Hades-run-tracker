@@ -1,13 +1,17 @@
 import {useEffect, useState} from "react"
+import BoonList from "./BoonList"
 
 export default function NewRunForm(){
     const [gods, setGods] = useState([])
     const [boonList, setBoonList] = useState([])
+    const [clearedLevels, setClearedLevels] = useState([])
 
     useEffect(() => {
         fetch("/gods")
         .then((r) => r.json())
-        .then(g => setGods(g))
+        .then(g => {
+            setGods(g)
+        })
     },[])
 
     function submitHandler(e){
@@ -21,13 +25,17 @@ export default function NewRunForm(){
         // })
     }
     function displayGodsBoons(e){
-        setBoonList(e.target.id)
+        
+        setBoonList(gods.e.target.id.boons)
     }
 
 
     return(
         <div>
             <form onSubmit={submitHandler}>
+                <div id="levels">Level Cleared</div>
+
+            </form>
             {gods.map(god => 
                 <div className="gods" key={god.id}> 
                     <h2>{god.name}</h2>
@@ -35,7 +43,7 @@ export default function NewRunForm(){
                     <p>{god.title}</p>
                 </div>
             )}
-            </form>
+            <BoonList boonList={boonList}></BoonList>
         </div>
     )
 }
