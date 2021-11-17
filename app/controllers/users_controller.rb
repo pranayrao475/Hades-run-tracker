@@ -16,7 +16,7 @@ class UsersController < ApplicationController
         if current_user
             render json: current_user
         else
-            render json: { error: "Not authorized"}, status: :unauthorized
+            render json: { error: "No user currently logged in."}, status: :unauthorized
         end
     end
   

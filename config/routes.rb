@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  resources :runs, only: [:create, :destroy, :index]
+  get "/runlog", to: "runs#index"
+  post "/escape", to: "runs#create"
   get "/me", to: "users#show"
   post "/signup", to: "users#create"
   post "/login", to: "sessions#create"
