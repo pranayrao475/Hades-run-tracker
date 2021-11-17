@@ -56,11 +56,10 @@ function Home({ user, setUser}) {
     background-size: cover;
     background-position: center;
     height: 100vh;
-    background-attachment: fixed;
+    background-attachment: scroll;
     margin-top: 0px;
   `
   const ButtonWrapper = styled.div`
-  
   & button {
     background-color:#ffffff;
     color: red;

@@ -95,7 +95,7 @@ background-size: cover;
     margin-top: 0px;
 
 `
-const Button = styled.div`
+const Button = styled.button`
 cursor: pointer;
 background-color: brown;
   font-size: 2rem;
