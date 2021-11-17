@@ -10,12 +10,15 @@ class RunsController < ApplicationController
     end
 
     def create #/escape
-        run = Run.create(run_params)
+        byebug
+        run = Run.create!(params.permit(:cleared_levels))
+        boons = ChosenBoon.create(params.permit(:boon_id))
+        run.chosen_boons << boons
         render json: run, status: :created
     end
 
     private
-    def run_params
-        params.require(:run).permit(:cleared_levels)
+    def render_errors
+        return render json: { error}
     end
 end

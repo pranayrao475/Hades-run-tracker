@@ -10,8 +10,11 @@ dionysus = OlympianGod.create(name: "Dionysus", title: "God of Wine", image: "ht
 hermes = OlympianGod.create(name: "Hermes", title: "God of Swiftness", image: "https://static.wikia.nocookie.net/hades_gamepedia_en/images/c/ce/Hermes_reward.png/revision/latest/scale-to-width-down/214?cb=20190612154840")
 
 
-User.create(username: "Patrick", password: "asdf", password_confirmation: "asdf")
-User.create(username: "Pranay", password: "asdf", password_confirmation: "asdf")
+pat = User.create(username: "Patrick", password: "asdf", password_confirmation: "asdf")
+pr = User.create(username: "Pranay", password: "asdf", password_confirmation: "asdf")
+
+pat.runs << Run.create(cleared_levels: 4)
+pr.runs << Run.create(cleared_levels: 4)
 
 puts "🌱 Seeding boons..."
 athena.boons << Boon.create([
@@ -97,4 +100,8 @@ artemis.boons << Boon.create([
     {boon_name: "Support Fire", description: "After you Cast, or hit with an Attack or Special, fire a seeking arrow."},
     {boon_name: "Fully Loaded", description: "Gain extra Cast Ammo"}
  ])
+ demeter.boons << Boon.create([
+
+ ])
+
 puts "✅ Done seeding!"
