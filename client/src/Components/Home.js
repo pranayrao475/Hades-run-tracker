@@ -23,26 +23,28 @@ function Home({ user, setUser}) {
         </div>
       )}
        else {
-      return (<>
+      return (
         <Header>
           <h1> Welcome to the Underworld</h1>
           <h1>Hades Run Tracker</h1>
             <h4>Please Login or Sign Up</h4>
-
-            <Link to="/signup"><Button type="button">Signup</Button></Link>
+            <ButtonWrapper>
+            <Link to="/login"> <button type="button">Login</button></Link>
+            <Link to="/signup"><button type="button">Signup</button></Link>
+            </ButtonWrapper>
         
-        <Link to="/login"> <Button type="button">Login</Button></Link>
       
         </Header>
         
        
-        </>
+        
       )}
   }
   
   export default Home;
 
   const Header = styled.div`
+  
   color: white;
   font-family: Chalkduster, fantasy;
   text-align: center;
@@ -55,16 +57,28 @@ function Home({ user, setUser}) {
     background-position: center;
     height: 100vh;
     background-attachment: fixed;
+    margin-top: 0px;
   `
-  // const Button = styled.button`
-  // cursor: pointer;
-  // font-size: 1rem;
-  // border: 2px solid transparent;
-  // border-radius: 6px;
-  // padding: 8px 16px;
-  // text-decoration: none;
-  // text-align: center;
-  // justify-content: center;
-  // float:left;
+  const ButtonWrapper = styled.div`
   
-  // `
+  & button {
+    background-color:#ffffff;
+    color: red;
+    cursor: pointer;
+    font-size: 3rem;
+    border: 2px solid transparent;
+    border-radius: 30px;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin-left: 40px;
+  text-align: center;
+  justify-content: center;
+  &:hover {
+    opacity: 0.8;
+  }
+  }
+  
+ 
+
+  
+  `

@@ -81,17 +81,18 @@ text-align: center;
   font-family: Chalkduster, fantasy;
   text-align: center;
   justify-content: center;
-  
+  margin-top: 0px;
   font-size: 100px;
   color: white;
   text-shadow: 4px 4px 8px red;
 
 }
-background-image: url(https://cdn1.epicgames.com/min/offer/2560x1440-2560x1440-5e710b93049cbd2125cf0261dcfbf943.jpg);
+background-image: linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://cdn1.epicgames.com/min/offer/2560x1440-2560x1440-5e710b93049cbd2125cf0261dcfbf943.jpg);
 background-size: cover;
     background-position: center;
     height: 100vh;
     background-attachment: scroll;
+    margin-top: 0px;
 
 `
 const Button = styled.div`

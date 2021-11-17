@@ -32,7 +32,7 @@ const ButtonBase = styled.button`
   display: inline-block;
   float: left;
   justify-content: center;
-  margin-left: 30px;
+  margin-left: 500px;
   text-align: center;
   
   
