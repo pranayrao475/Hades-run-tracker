@@ -21,10 +21,13 @@ function Signup({setUser}){
           password,
           password_confirmation: passwordConfirmation,
         }),
-      }).then((r) => {
+      })
+      .then((r) => {
         if (r.ok) {
           r.json().then((user) => setUser(user));
           navigate("/")
+        } else {
+            r.json().then(error => alert(error.errors));
         }
       });
     }
