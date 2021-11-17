@@ -25,8 +25,7 @@ export default function NewRunForm(){
         // })
     }
     function displayGodsBoons(e){
-        
-        setBoonList(gods.e.target.id.boons)
+        setBoonList(gods[e.target.id-1].boons)
     }
 
 
@@ -37,7 +36,7 @@ export default function NewRunForm(){
 
             </form>
             {gods.map(god => 
-                <div className="gods" key={god.id}> 
+                <div className="gods"> 
                     <h2>{god.name}</h2>
                     <img id={god.id} src={god.image} name={god.name} onClick={displayGodsBoons}/>
                     <p>{god.title}</p>
