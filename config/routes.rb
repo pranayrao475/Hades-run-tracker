@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/gods", to: "olympian_gods#index"
   get "/runlog", to: "runs#index"
   post "/escape", to: "runs#create"
   get "/me", to: "users#show"

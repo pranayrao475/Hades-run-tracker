@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_17_164616) do
+ActiveRecord::Schema.define(version: 2021_11_17_172031) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "boons", force: :cascade do |t|
+    t.bigint "olympian_god_id", null: false
+    t.string "boon_name"
+    t.string "description"
+    t.index ["olympian_god_id"], name: "index_boons_on_olympian_god_id"
+  end
+
+  create_table "chosen_boons", force: :cascade do |t|
+    t.bigint "boon_id", null: false
+    t.bigint "run_id", null: false
+    t.index ["boon_id"], name: "index_chosen_boons_on_boon_id"
+    t.index ["run_id"], name: "index_chosen_boons_on_run_id"
+  end
+
+  create_table "olympian_gods", force: :cascade do |t|
+    t.string "name"
+    t.string "title"
+    t.string "image"
+  end
 
   create_table "runs", force: :cascade do |t|
     t.integer "user_id"
@@ -26,4 +46,7 @@ ActiveRecord::Schema.define(version: 2021_11_17_164616) do
     t.string "username"
   end
 
+  add_foreign_key "boons", "olympian_gods"
+  add_foreign_key "chosen_boons", "boons"
+  add_foreign_key "chosen_boons", "runs"
 end
