@@ -44,11 +44,11 @@ export default function NewRunForm(){
 
     function addBoons(e){
         // let boonIDs = boonList.map(b => b.id)
-        let boonFilter = boonList.filter(b => b.id == e.target.id)
+        let selectedBoon = boonList.find(b => b.id == e.target.id)
         // console.log(`boonIDs ${boonIDs}`)
-        console.log(`boon filter ${boonFilter}`)
+        console.log(`boon filter ${selectedBoon}`)
         // console.log(`target id ${e.target.id}`)
-        setChosenBoons([...chosenBoons, boonFilter[0]])
+        setChosenBoons([...chosenBoons, selectedBoon])
         e.target.remove()
     };
 
@@ -69,7 +69,7 @@ export default function NewRunForm(){
             </form>
             <Runwrapper>
             {gods.map(god => 
-                <div className="gods" id={god.id}> 
+                <div className="gods" key={god.id}> 
                     <h2>{god.name}</h2>
                     <img id={god.id} src={god.image} name={god.name} onClick={displayGodsBoons} alt= ""/>
                     <p>{god.title}</p>
