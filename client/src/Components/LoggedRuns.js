@@ -11,7 +11,9 @@ export default function LoggedRuns(){
     return(
         <div>
             <h1>Logged Runs</h1>
-            {runsList.map(run => <li>{run.cleared_levels}</li>)}
+            <ol id="runs list">
+            {runsList.map(run => <li>Cleared level {run.cleared_levels}</li>)}
+            </ol>
         </div>
 
     )

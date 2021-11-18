@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react"
 import BoonList from "./BoonList"
 import styled from "styled-components"
+import ChosenBoons from "./ChosenBoons"
 
 export default function NewRunForm(){
     const [gods, setGods] = useState([])
     const [boonList, setBoonList] = useState([])
-    const [chosenBoonIDs, setChosenBoonIDs] = useState([]) //array of boon_id
+    const [chosenBoons, setChosenBoons] = useState([]) 
     const [clearedLevels, setClearedLevels] = useState(0)
 
     useEffect(() => {
@@ -14,12 +15,13 @@ export default function NewRunForm(){
         .then(g => {
             setGods(g)
         })
-    },[])
+    },[]);
 
     function submitHandler(e){
         e.preventDefault();
-        postRunAndBoons(clearedLevels, chosenBoonIDs)
-    }
+        postRunAndBoons(clearedLevels, chosenBoons)
+    };
+
     function postRunAndBoons(levels, boons){
         fetch("/escape", {
             method: "POST",
@@ -31,33 +33,25 @@ export default function NewRunForm(){
         })
         .then(r=>r.json())
         .then(console.log)
-    }
-    // function handleSubmit(e){
-    //     e.preventDefault()
-    //     let boons = currentBoons.map(boon=>boon.value)
-    //     addBoss(downedBoss, boons)
-    // }
+    };
 
-    // function addBoss(downedBoss, mappedBoons){
-    //     fetch("http://localhost:9292/beaten_bosses", {
-    //         method: "POST",
-    //         headers: {
-    //           "Content-Type": "application/json",
-    //         },
-    //         body: JSON.stringify({
-    //             user_id: currentUser.id,
-    //             boon_id: mappedBoons, 
-    //             boss_id: 4})
-    //     })
-    //     .then(r=>r.json())
-    //     .then(console.log)
-    // }
     function displayGodsBoons(e){
-        setBoonList(gods[e.target.id-1].boons)
-    }
+        fetch(`/gods/${e.target.id}/boons`)
+        .then(r=>r.json())
+        .then(boons => setBoonList(boons))
+        // setBoonList(gods[e.target.id-1].boons)
+    };
+
     function addBoons(e){
-        setChosenBoonIDs([...chosenBoonIDs, e.target.id])
-    }
+        // let boonIDs = boonList.map(b => b.id)
+        let boonFilter = boonList.filter(b => b.id == e.target.id)
+        // console.log(`boonIDs ${boonIDs}`)
+        console.log(`boon filter ${boonFilter}`)
+        // console.log(`target id ${e.target.id}`)
+        setChosenBoons([...chosenBoons, boonFilter[0]])
+        e.target.remove()
+    };
+
     return(
         <div>
             <form onSubmit={submitHandler}>
@@ -71,6 +65,7 @@ export default function NewRunForm(){
                     <label for="4thlvl">Hades Down</label>
                     <input type="button" id="4thlvl" onClick={()=>setClearedLevels(4)}></input>
                 </Idwrapper>
+                <ChosenBoons chosenBoons={chosenBoons}></ChosenBoons>
             </form>
             <Runwrapper>
             {gods.map(god => 

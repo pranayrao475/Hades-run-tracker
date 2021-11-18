@@ -1,5 +1,6 @@
 class RunsController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_invalid
+before_action :current_user
 
     def index #/runlog
         render json: @user&.runs

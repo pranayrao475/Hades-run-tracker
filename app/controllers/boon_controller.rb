@@ -1,2 +1,0 @@
-class BoonController < ApplicationController
-end
