@@ -60,7 +60,6 @@ export default function NewRunForm(){
     }
     return(
         <div>
-            
             <form onSubmit={submitHandler}>
                 <Idwrapper id="levels">How far did you get?
                     <button onClick={()=>setClearedLevels(1)}>Made it out of Tartarus</button>
