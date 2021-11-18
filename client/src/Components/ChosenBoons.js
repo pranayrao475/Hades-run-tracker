@@ -4,7 +4,7 @@ export default function ChosenBoons({chosenBoons}){
         <div id="chosen boons">
         <ul>
             {chosenBoons.map(boon => 
-                <li id={boon.id}>{boon.boon_name}</li>)}
+                <li id={boon.id}>{boon.boon_name} - {boon.description}</li>)}
         </ul>
     </div>
     )
