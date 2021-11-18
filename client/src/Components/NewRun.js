@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react"
 import BoonList from "./BoonList"
+import styled from "styled-components"
 
 export default function NewRunForm(){
     const [gods, setGods] = useState([])
     const [boonList, setBoonList] = useState([])
-    const [chosenBoons, setChosenBoons] = useState([])
+    const [chosenBoonIDs, setChosenBoonIDs] = useState([]) //array of boon_id
     const [clearedLevels, setClearedLevels] = useState(0)
 
     useEffect(() => {
@@ -17,44 +18,146 @@ export default function NewRunForm(){
 
     function submitHandler(e){
         e.preventDefault();
+        postRunAndBoons(clearedLevels, chosenBoonIDs)
+    }
+    function postRunAndBoons(levels, boons){
         fetch("/escape", {
             method: "POST",
             headers: { "Content-Type": "application/json"},
             body: JSON.stringify({
-                cleared_levels: clearedLevels,
-                chosenBoons
+                cleared_levels: levels,
+                chosenBoons: boons
             })
         })
+        .then(r=>r.json())
+        .then(console.log)
     }
+    // function handleSubmit(e){
+    //     e.preventDefault()
+    //     let boons = currentBoons.map(boon=>boon.value)
+    //     addBoss(downedBoss, boons)
+    // }
+
+    // function addBoss(downedBoss, mappedBoons){
+    //     fetch("http://localhost:9292/beaten_bosses", {
+    //         method: "POST",
+    //         headers: {
+    //           "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify({
+    //             user_id: currentUser.id,
+    //             boon_id: mappedBoons, 
+    //             boss_id: 4})
+    //     })
+    //     .then(r=>r.json())
+    //     .then(console.log)
+    // }
     function displayGodsBoons(e){
         setBoonList(gods[e.target.id-1].boons)
     }
-    
-    function chooseBoon(e){
-
+    function addBoons(e){
+        setChosenBoonIDs([...chosenBoonIDs, e.target.id])
     }
-
     return(
         <div>
+            
             <form onSubmit={submitHandler}>
-                <div id="levels">How far did you get?
+                <Idwrapper id="levels">How far did you get?
                     <button onClick={()=>setClearedLevels(1)}>Made it out of Tartarus</button>
                     <button onClick={()=>setClearedLevels(2)}>Boned the Bone Hydra</button>
                     <button onClick={()=>setClearedLevels(3)}>Exited Elysium</button>
                     <button onClick={()=>setClearedLevels(4)}>Hades Down</button>
-                </div>
-                <div id="boons">
-
-                </div>
+                </Idwrapper>
             </form>
+            <Runwrapper>
             {gods.map(god => 
-                <div id={god.id}> 
+                <div className="gods" id={god.id}> 
                     <h2>{god.name}</h2>
-                    <img id={god.id} src={god.image} name={god.name} onClick={displayGodsBoons}/>
+                    <img id={god.id} src={god.image} name={god.name} onClick={displayGodsBoons} alt= ""/>
                     <p>{god.title}</p>
                 </div>
             )}
-            <BoonList boonList={boonList}></BoonList>
+            
+            </Runwrapper>
+            <Boonwrapper>
+            <BoonList boonList={boonList} addBoons={addBoons}></BoonList>
+            </Boonwrapper>
         </div>
     )
 }
+const Runwrapper = styled.div`
+background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/originals/a9/52/9a/a9529a5067aa1f2fc995679ac89f10ad.gif);
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+align-content: center;
+gap: 10px 20px;
+& h2 {
+    background-coor: brown;
+  margin: 0;
+  padding: 20px 40px;
+  color: black;
+  font-family: Chalkduster, fantasy;
+  text-align: center;
+  justify-content: center;
+  font-size: 30px;
+  text-shadow: 2px 4px 6px red;
+}
+& p{
+    background-coor: brown;
+    margin: 0;
+    padding: 20px 40px;
+    color: black;
+    font-family: Chalkduster, fantasy;
+    text-align: center;
+    justify-content: center;
+    font-size: 15px;
+    text-shadow: 1px 2px 4px red;
+}
+
+
+.gods{
+    
+    color: red;
+    width: 250px;
+    margin: 10px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1), 0 0 60px rgba(0,0,0,0.12);
+    & img{
+    width: 100%;
+    height: 70%;
+    cursor: pointer;
+    margin: 0;
+    overflow: hidden;
+    background-color: #000;
+    }
+}
+
+`
+const Idwrapper = styled.div`
+
+    color: white;
+    background-color: black;
+    display: block;
+    text-align: center;
+    font-size: 50px;
+
+`
+const Boonwrapper = styled.div`
+
+color: red;
+background-color: white;
+font-family: Chalkduster, fantasy;
+text-align: center;
+margin: 0;
+text-decoration: none;
+list-style-type: none;
+font-size: 30px;
+background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/originals/a9/52/9a/a9529a5067aa1f2fc995679ac89f10ad.gif);
+
+`

@@ -8,8 +8,9 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_invalid
     def create #/escape
         byebug
         run = Run.create!(cleared_levels: params[:cleared_levels], user_id: session[:user_id])
-        params[:chosenBoons].map do |boon|
-        run.chosen_boons << boons
+        @boons = []
+        params[:chosenBoons].each {|boon| @boons << Boon.create!(boon_id: boon.id)} 
+        run.chosen_boons << @boons
         render json: run, status: :created
     end
 
