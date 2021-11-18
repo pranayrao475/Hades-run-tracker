@@ -62,10 +62,14 @@ export default function NewRunForm(){
         <div>
             <form onSubmit={submitHandler}>
                 <Idwrapper id="levels">How far did you get?
-                    <button onClick={()=>setClearedLevels(1)}>Made it out of Tartarus</button>
-                    <button onClick={()=>setClearedLevels(2)}>Boned the Bone Hydra</button>
-                    <button onClick={()=>setClearedLevels(3)}>Exited Elysium</button>
-                    <button onClick={()=>setClearedLevels(4)}>Hades Down</button>
+                    <label for="1stlvl">Made it out of Tartarus</label>
+                    <input type="button" id="1stlvl" onClick={()=>setClearedLevels(1)}></input>
+                    <label for="2ndlvl">Boned the Bone Hydra</label>
+                    <input type="button" id="2ndlvl" onClick={()=>setClearedLevels(2)}></input>
+                    <label for="3rdlvl">Exited Elysium</label>
+                    <input type="button" id="3rdlvl" onClick={()=>setClearedLevels(3)}></input>
+                    <label for="4thlvl">Hades Down</label>
+                    <input type="button" id="4thlvl" onClick={()=>setClearedLevels(4)}></input>
                 </Idwrapper>
             </form>
             <Runwrapper>
