@@ -20,6 +20,7 @@ export default function NewRunForm(){
     function submitHandler(e){
         e.preventDefault();
         postRunAndBoons(clearedLevels, chosenBoons)
+        alert("Run logged!")
     };
 
     function postRunAndBoons(levels, boons){
@@ -39,17 +40,13 @@ export default function NewRunForm(){
         fetch(`/gods/${e.target.id}/boons`)
         .then(r=>r.json())
         .then(boons => setBoonList(boons))
-        // setBoonList(gods[e.target.id-1].boons)
     };
 
     function addBoons(e){
-        // let boonIDs = boonList.map(b => b.id)
         let selectedBoon = boonList.find(b => b.id == e.target.id)
-        // console.log(`boonIDs ${boonIDs}`)
-        console.log(`boon filter ${selectedBoon}`)
-        // console.log(`target id ${e.target.id}`)
-        setChosenBoons([...chosenBoons, selectedBoon])
-        e.target.remove()
+        setChosenBoons((prevChosenBoons) =>[...prevChosenBoons, selectedBoon])
+        console.log(e.target)
+        e.target.remove() //this breaks page if user clicks a god after adding a boon
     };
 
     return(
@@ -57,15 +54,16 @@ export default function NewRunForm(){
             <form onSubmit={submitHandler}>
                 <Idwrapper id="levels">How far did you get?
                     <label for="1stlvl">Made it out of Tartarus</label>
-                    <input type="button" id="1stlvl" onClick={()=>setClearedLevels(1)}></input>
+                    <input type="radio" id="1stlvl" onClick={()=>setClearedLevels(1)}></input>
                     <label for="2ndlvl">Boned the Bone Hydra</label>
-                    <input type="button" id="2ndlvl" onClick={()=>setClearedLevels(2)}></input>
+                    <input type="radio" id="2ndlvl" onClick={()=>setClearedLevels(2)}></input>
                     <label for="3rdlvl">Exited Elysium</label>
-                    <input type="button" id="3rdlvl" onClick={()=>setClearedLevels(3)}></input>
+                    <input type="radio" id="3rdlvl" onClick={()=>setClearedLevels(3)}></input>
                     <label for="4thlvl">Hades Down</label>
-                    <input type="button" id="4thlvl" onClick={()=>setClearedLevels(4)}></input>
+                    <input type="radio" id="4thlvl" onClick={()=>setClearedLevels(4)}></input>
                 </Idwrapper>
                 <ChosenBoons chosenBoons={chosenBoons}></ChosenBoons>
+                <button>Save Run</button>
             </form>
             <Runwrapper>
             {gods.map(god => 
