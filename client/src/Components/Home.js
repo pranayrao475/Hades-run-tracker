@@ -33,8 +33,8 @@ function Home({ user, setUser}) {
             <h4>Please Login or Sign Up</h4>
           
             <ButtonWrapper>
-            <Link to="/login"><button type="button">Login</button></Link>
-            <Link to="/signup"><button type="button">Signup</button></Link>
+            <Link to="/login"><button class="button_slide slide_right" type="button">Login</button></Link>
+            <Link to="/signup"><button class="button_slide slide_right" type="button">Signup</button></Link>
             </ButtonWrapper>
         
       
@@ -48,6 +48,9 @@ function Home({ user, setUser}) {
   export default Home;
 
   const Header = styled.div`
+  & h1{
+    margin: 0;
+  }
   color: white;
   font-family: Chalkduster, fantasy;
   text-align: center;
@@ -64,23 +67,28 @@ function Home({ user, setUser}) {
   -o-background-size: cover;
   `
   const ButtonWrapper = styled.div`
-  & button {
-  background-color:#ffffff;
-  color: red;
-  cursor: pointer;
-  font-size: 3rem;
-  border: 2px solid transparent;
-  border-radius: 30px;
-  padding: 8px 16px;
-  text-decoration: none;
-  margin-left: 40px;
-  text-align: center;
-  justify-content: center;
-  &:hover {
-    opacity: 0.8;
+  .button_slide {
+    color: white;
+    background-color:black ;
+    text-shadow: 4px 4px 8px red;
+    border: 2px solid black;
+    border-radius: 3px;
+    padding: 20px 35px;
+    margin-top: 0px;
+    margin-left: 40px;
+    display: inline-block;
+    font-family: Chalkduster, fantasy;
+    font-size: 3rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 brown;
+    -webkit-transition: ease-out 0.5s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
   }
-  }
-  `
+  .slide_right:hover {
+    box-shadow: inset 400px 0 0 0 brown ;
+  }`
   const Headercontainer = styled.div`
   & h1{
   background-coor: brown;
