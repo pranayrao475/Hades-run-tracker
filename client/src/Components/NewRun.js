@@ -51,9 +51,9 @@ export default function NewRunForm(){
 
     return(
         <div>
+            <Formwrapper>
             <form onSubmit={submitHandler}>
                 <Idwrapper id="levels"><h1>How far did you get?</h1>
-                    <Formwrapper>
                     <label for="1stlvl">Made it out of Tartarus</label>
                     <input type="radio" id="1stlvl" onClick={()=>setClearedLevels(1)}></input>
                     <label for="2ndlvl">Boned the Bone Hydra</label>
@@ -62,13 +62,13 @@ export default function NewRunForm(){
                     <input type="radio" id="3rdlvl" onClick={()=>setClearedLevels(3)}></input>
                     <label for="4thlvl">Hades Down</label>
                     <input type="radio" id="4thlvl" onClick={()=>setClearedLevels(4)}></input>
-                    </Formwrapper>
                 </Idwrapper>
                 <Choosenboonwrapper>
-                <ChosenBoons chosenBoons={chosenBoons}></ChosenBoons>
-                <button>Save Run</button>
+                    <ChosenBoons chosenBoons={chosenBoons}></ChosenBoons>
+                    <button>Save Run</button>
                 </Choosenboonwrapper>
             </form>
+                    </Formwrapper>
             <Booncontainer>
             <Runwrapper className="item1">
             {gods.map(god => 
