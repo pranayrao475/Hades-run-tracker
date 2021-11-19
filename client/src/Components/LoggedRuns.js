@@ -14,13 +14,13 @@ export default function LoggedRuns(){
     function clickedRun(e){
         let selectedRun = runsList.find(run => run.id.toString() === e.target.id);
         // console.log(selectedRun.chosen_boons.map(b=>b.boon_name));
+       
         setChosenBoons(selectedRun.chosen_boons.map(b=>b.boon_name))
     }
     return(
         <Container>
             <h1>My Runs Tracker</h1>
         <Wrapper>
-            
             <Runwrapper>
             <h1>Logged Runs</h1>
             <ol id="runslist">

@@ -51,6 +51,7 @@ export default function NewRunForm(){
 
     return(
         <div>
+            <Formwrapper>
             <form onSubmit={submitHandler}>
             <Formwrapper>
                 <Idwrapper id="levels"><h1>How far did you get?</h1>
@@ -72,6 +73,7 @@ export default function NewRunForm(){
                 <button class="button_slide slide_right">Save Run</button>
                 </Choosenboonwrapper>
             </form>
+                    </Formwrapper>
             <Booncontainer>
             <Runwrapper className="item1">
             {gods.map(god => 
