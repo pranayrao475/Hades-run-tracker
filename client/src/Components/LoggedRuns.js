@@ -13,6 +13,7 @@ export default function LoggedRuns(){
     
     function clickedRun(e){
         let selectedRun = runsList.find(run => run.id.toString() === e.target.id); 
+        console.log(selectedRun.chosenBoons);
         setChosenBoons(selectedRun.chosen_boons.map(b=>b.boon_name))
     }
     return(
