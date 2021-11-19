@@ -43,7 +43,7 @@ export default function NewRunForm(){
     };
 
     function addBoons(e){
-        let selectedBoon = boonList.find(b => b.id == e.target.id)
+        let selectedBoon = boonList.find(b => b.id.toString() === e.target.id)
         setChosenBoons((prevChosenBoons) =>[...prevChosenBoons, selectedBoon])
         console.log(e.target)
         e.target.remove() //this breaks page if user clicks a god after adding a boon
@@ -52,21 +52,24 @@ export default function NewRunForm(){
     return(
         <div>
             <form onSubmit={submitHandler}>
+            <Formwrapper>
                 <Idwrapper id="levels"><h1>How far did you get?</h1>
-                    <Formwrapper>
+                  
                     <label for="1stlvl">Made it out of Tartarus</label>
-                    <input type="radio" id="1stlvl" onClick={()=>setClearedLevels(1)}></input>
+                    <input type="checkbox"  id="1stlvl" onClick={()=>setClearedLevels(1)}></input>
                     <label for="2ndlvl">Boned the Bone Hydra</label>
-                    <input type="radio" id="2ndlvl" onClick={()=>setClearedLevels(2)}></input>
+                    <input type="checkbox"  id="2ndlvl" onClick={()=>setClearedLevels(2)}></input>
                     <label for="3rdlvl">Exited Elysium</label>
-                    <input type="radio" id="3rdlvl" onClick={()=>setClearedLevels(3)}></input>
+                    <input type="checkbox"  id="3rdlvl" onClick={()=>setClearedLevels(3)}></input>
                     <label for="4thlvl">Hades Down</label>
-                    <input type="radio" id="4thlvl" onClick={()=>setClearedLevels(4)}></input>
-                    </Formwrapper>
+                    <input type="checkbox"  id="4thlvl" onClick={()=>setClearedLevels(4)}></input>
+                  
                 </Idwrapper>
+                </Formwrapper>
                 <Choosenboonwrapper>
+
                 <ChosenBoons chosenBoons={chosenBoons}></ChosenBoons>
-                <button>Save Run</button>
+                <button class="button_slide slide_right">Save Run</button>
                 </Choosenboonwrapper>
             </form>
             <Booncontainer>
@@ -88,11 +91,10 @@ export default function NewRunForm(){
     )
 }
 const Runwrapper = styled.div`
-background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/originals/a9/52/9a/a9529a5067aa1f2fc995679ac89f10ad.gif);
+background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.3)), url(https://i.pinimg.com/originals/a9/52/9a/a9529a5067aa1f2fc995679ac89f10ad.gif);
   background-size: cover;
   background-position: center;
   height: 100%;
-
 display: flex;
 flex-wrap: wrap;
 justify-content: flex-start;
@@ -147,7 +149,7 @@ const Idwrapper = styled.div`
     color: black;
     font-family: Chalkduster, fantasy;
     justify-content: center;
-    text-shadow: 1px 2px 4px red;
+    text-shadow: 4px 4px 8px white;
     & h1{
         text-align: center;
         background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_34e6660705cfe47d2b2f95189c37f7cb77f75ca6.1920x1080.jpg?t=1624463563);
@@ -164,27 +166,29 @@ background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(htt
    
     
     & label{
-        display: flex;
-        flex-direction: colomn;
-        color: white;
-  display: block;
+text-align: center;
+justify-content: center;
+    color: white;
   font-family: Chalkduster, fantasy;
   text-shadow: 4px 4px 8px red;
-  
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin: 20px;
+
     }
     & input{
-        border-radius: 6px;
-  border: 1px solid transparent;
+     border-radius: 10px;
+  border: 2px solid transparent;
   border-color: red;
-  -webkit-appearance: none;
+  background-color:white;
   max-width: 15%;
-  width: 100%;
-  font-size: 1drem;
-  line-height: 1.5;
+  width: 2%;
+  font-size: 5rem;
+  line-height: 4;
   padding: 5px;
+  height: 30px;
+  width: 30px;
+  background-color: red;
   
 
     }
@@ -192,38 +196,69 @@ background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(htt
 `
 const Boonwrapper = styled.div`
 
-color: red;
+color: white;
+text-shadow: 1px 2px 4px red;
 background-color: white;
 font-family: Chalkduster, fantasy;
 ul#boon-container{
     list-style-type: none;
-    
 }
 margin: 0;
 text-decoration: none;
-
 font-size: 30px;
 background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/originals/a9/52/9a/a9529a5067aa1f2fc995679ac89f10ad.gif);
+background-size: cover;
+text-align: center;
+cursor:pointer;
 
+ 
 `
 const Choosenboonwrapper = styled.div`
 width: 100%;
 height: auto;
-
-color: black;
+font-size: 40px;
+list-style-type: none;
+line-height: 1.6;
+color: white;
+font-family: Chalkduser, fantasy;
+justify-content: center;
+text-shadow: 1px 2px 4px red;
+margin-top: 0;
+text-align: center;
+background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://www.heypoorplayer.com/wp-content/uploads/2020/12/Hades-Elysium-Combat.jpg);
+background-repeat: no-repeat;
+background-size: cover;
+.button_slide {
+    color: white;
+    background-color:black ;
+    text-shadow: 4px 4px 8px red;
+    border: 2px solid black;
+    border-radius: 50px;
+    padding: 10px 25px;
+    margin-top: 0px;
+    margin-left: 40px;
+    display: inline-block;
     font-family: Chalkduster, fantasy;
-    justify-content: center;
-    text-shadow: 1px 2px 4px red;
-    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 0 rgb(46,6,4);
+    -webkit-transition: ease-out 0.5s;
+    -moz-transition: ease-out 0.4s;
+    transition: ease-out 0.4s;
+  }
+  .slide_right:hover {
+    box-shadow: inset 400px 0 0 0 rgb(46,6,4);
+  }
+       
 
 `
 
 const Booncontainer = styled.div`
 display: grid;
   grid: 100% / auto auto;
-  grid-gap: 0;
-  
+  grid-gap: 10px;
   padding: 0;
   margin: 0;
-
+  background-color:black ;
 `

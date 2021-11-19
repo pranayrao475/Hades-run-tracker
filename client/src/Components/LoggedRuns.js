@@ -12,7 +12,7 @@ export default function LoggedRuns(){
         .then(runs => setRunsList(runs))},[]);
     
     function clickedRun(e){
-        let selectedRun = runsList.find(run => run.id === e.target.id);
+        let selectedRun = runsList.find(run => run.id.toString() === e.target.id);
         // console.log(selectedRun.chosen_boons.map(b=>b.boon_name));
         setChosenBoons(selectedRun.chosen_boons.map(b=>b.boon_name))
     }
@@ -60,6 +60,7 @@ display: grid;
 const Runwrapper = styled.div`
 font-size: 30px;
 color: white;
+cursor: pointer;
 border: 4px solid rgba(219, 241, 241, 0.20);
 margin: 20px;
 ol#runslist{
