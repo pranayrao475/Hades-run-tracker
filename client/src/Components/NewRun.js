@@ -44,7 +44,7 @@ export default function NewRunForm(){
 
     function addBoons(e){
         // let boonIDs = boonList.map(b => b.id)
-        let selectedBoon = boonList.find(b => b.id == e.target.id)
+        let selectedBoon = boonList.find(b => b.id === e.target.id)
         // console.log(`boonIDs ${boonIDs}`)
         console.log(`boon filter ${selectedBoon}`)
         // console.log(`target id ${e.target.id}`)
@@ -55,7 +55,8 @@ export default function NewRunForm(){
     return(
         <div>
             <form onSubmit={submitHandler}>
-                <Idwrapper id="levels">How far did you get?
+                <Idwrapper id="levels"><h1>How far did you get?</h1>
+                    <Formwrapper>
                     <label for="1stlvl">Made it out of Tartarus</label>
                     <input type="button" id="1stlvl" onClick={()=>setClearedLevels(1)}></input>
                     <label for="2ndlvl">Boned the Bone Hydra</label>
@@ -64,10 +65,14 @@ export default function NewRunForm(){
                     <input type="button" id="3rdlvl" onClick={()=>setClearedLevels(3)}></input>
                     <label for="4thlvl">Hades Down</label>
                     <input type="button" id="4thlvl" onClick={()=>setClearedLevels(4)}></input>
+                    </Formwrapper>
                 </Idwrapper>
+                <Choosenboonwrapper>
                 <ChosenBoons chosenBoons={chosenBoons}></ChosenBoons>
+                </Choosenboonwrapper>
             </form>
-            <Runwrapper>
+            <Booncontainer>
+            <Runwrapper className="item1">
             {gods.map(god => 
                 <div className="gods" key={god.id}> 
                     <h2>{god.name}</h2>
@@ -77,9 +82,10 @@ export default function NewRunForm(){
             )}
             
             </Runwrapper>
-            <Boonwrapper>
+            <Boonwrapper className="item2">
             <BoonList boonList={boonList} addBoons={addBoons}></BoonList>
             </Boonwrapper>
+            </Booncontainer>
         </div>
     )
 }
@@ -91,9 +97,11 @@ background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(htt
 
 display: flex;
 flex-wrap: wrap;
-justify-content: space-around;
+justify-content: flex-start;
 align-content: center;
 gap: 10px 20px;
+
+ 
 & h2 {
     background-coor: brown;
   margin: 0;
@@ -138,12 +146,50 @@ gap: 10px 20px;
 
 `
 const Idwrapper = styled.div`
-
-    color: white;
-    background-color: black;
-    display: block;
-    text-align: center;
+    color: black;
+    font-family: Chalkduster, fantasy;
+    justify-content: center;
+    text-shadow: 1px 2px 4px red;
+    & h1{
+        text-align: center;
+        background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_34e6660705cfe47d2b2f95189c37f7cb77f75ca6.1920x1080.jpg?t=1624463563);
+        margin: 0;
+       
+    }
     font-size: 50px;
+`
+const Formwrapper = styled.div`
+color: white;
+background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/ss_34e6660705cfe47d2b2f95189c37f7cb77f75ca6.1920x1080.jpg?t=1624463563);
+
+    background-color: black;
+   
+    
+    & label{
+        display: flex;
+        flex-direction: colomn;
+        color: white;
+  display: block;
+  font-family: Chalkduster, fantasy;
+  text-shadow: 4px 4px 8px red;
+  
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+    }
+    & input{
+        border-radius: 6px;
+  border: 1px solid transparent;
+  border-color: red;
+  -webkit-appearance: none;
+  max-width: 15%;
+  width: 100%;
+  font-size: 1drem;
+  line-height: 1.5;
+  padding: 5px;
+  
+
+    }
 
 `
 const Boonwrapper = styled.div`
@@ -151,11 +197,35 @@ const Boonwrapper = styled.div`
 color: red;
 background-color: white;
 font-family: Chalkduster, fantasy;
-text-align: center;
+ul#boon-container{
+    list-style-type: none;
+    
+}
 margin: 0;
 text-decoration: none;
-list-style-type: none;
+
 font-size: 30px;
 background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/originals/a9/52/9a/a9529a5067aa1f2fc995679ac89f10ad.gif);
+
+`
+const Choosenboonwrapper = styled.div`
+width: 100%;
+height: auto;
+
+color: black;
+    font-family: Chalkduster, fantasy;
+    justify-content: center;
+    text-shadow: 1px 2px 4px red;
+    margin: 0;
+
+`
+
+const Booncontainer = styled.div`
+display: grid;
+  grid: 100% / auto auto;
+  grid-gap: 0;
+  
+  padding: 0;
+  margin: 0;
 
 `
