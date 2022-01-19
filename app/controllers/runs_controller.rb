@@ -7,7 +7,6 @@ before_action :current_user
     end
 
     def create #/escape
-        byebug
         run = Run.create!(cleared_levels:params[:cleared_levels], user_id: session[:user_id])
         params[:chosenBoons].each {|boon| ChosenBoon.create!(boon_id: boon, run_id: run.id)} 
         render json: run, status: :created
